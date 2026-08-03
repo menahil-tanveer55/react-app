@@ -2,50 +2,36 @@ import type { NavItem } from '@/types/common'
 
 export const siteConfig = {
   name: 'Rocket.io',
-  tagline: 'Building digital products that move businesses forward.',
+  tagline: 'We design and build software that helps businesses move faster.',
   description:
-    'Rocket.io is a modern software and digital-product company. We design, build and operate scalable products — from AI platforms to mobile applications.',
-  url: 'https://rocket.io', // [Replace with real domain]
+    'Rocket.io is a software company that designs and builds modern web applications, AI-powered tools and digital platforms for businesses.',
+  url: 'https://rocket-io.vercel.app',
   ogImage: '/og-default.png',
-  email: 'hello@rocket.io', // [Replace with real email]
-  address: '[Add Rocket.io office address]',
-  founded: '[Add founding year]',
+  // Email — add a real, monitored address before publishing
+  email: '',
   social: {
-    twitter: 'https://twitter.com/rocketio', // [Replace]
-    linkedin: 'https://linkedin.com/company/rocketio', // [Replace]
-    github: 'https://github.com/rocketio', // [Replace]
+    // Add real URLs before showing these links
+    linkedin: '',
+    github: '',
+    twitter: '',
   },
 }
 
+// Main navigation — Products, Work, Blog hidden until real content exists
 export const mainNav: NavItem[] = [
-  { label: 'Products', href: '/products' },
   { label: 'Services', href: '/services' },
-  { label: 'Work', href: '/work' },
   { label: 'About', href: '/about' },
-  { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ]
 
 export const footerNav = {
-  products: [
-    { label: 'All Products', href: '/products' },
-    { label: 'Product Alpha', href: '/products/product-alpha' },
-    { label: 'Product Beta', href: '/products/product-beta' },
-    { label: 'Product Gamma', href: '/products/product-gamma' },
-  ],
   services: [
-    { label: 'Product Strategy', href: '/services' },
-    { label: 'UI/UX Design', href: '/services' },
-    { label: 'Web Development', href: '/services' },
-    { label: 'Mobile Development', href: '/services' },
+    { label: 'Custom Software', href: '/services' },
     { label: 'AI & Automation', href: '/services' },
-    { label: 'Cloud & DevOps', href: '/services' },
+    { label: 'Product Design', href: '/services' },
   ],
   company: [
     { label: 'About', href: '/about' },
-    { label: 'Work', href: '/work' },
-    { label: 'Blog', href: '/blog' },
-    { label: 'Careers', href: '/about#careers' },
     { label: 'Contact', href: '/contact' },
   ],
   legal: [

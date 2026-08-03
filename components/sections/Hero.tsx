@@ -1,20 +1,13 @@
-import Button from '@/components/ui/Button'
-import { ArrowRight, Zap } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section
-      aria-label="Hero"
-      className="relative overflow-hidden bg-white"
-    >
-      {/* Subtle dot-grid background */}
-      <div className="absolute inset-0 dot-grid opacity-60" aria-hidden="true" />
-      {/* Gradient fade at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" aria-hidden="true" />
+    <section aria-label="Hero" className="relative overflow-hidden bg-white">
       {/* Orange glow top-right */}
       <div
-        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10 pointer-events-none"
-        style={{ background: 'radial-gradient(circle, #F04E23 0%, transparent 70%)' }}
+        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full opacity-8 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #F97316 0%, transparent 70%)' }}
         aria-hidden="true"
       />
 
@@ -22,79 +15,75 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Copy */}
           <div>
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold font-body mb-6">
-              <Zap size={14} aria-hidden="true" />
-              <span>Software products built to scale</span>
-            </div>
+            <p className="inline-block font-body text-sm font-semibold uppercase tracking-widest text-primary mb-6">
+              Product Engineering Studio
+            </p>
 
-            <h1 className="font-display font-bold text-secondary leading-tight text-4xl sm:text-5xl lg:text-6xl xl:text-7xl">
-              Building digital products that{' '}
-              <span className="gradient-text">move businesses</span>{' '}
+            <h1 className="font-display font-bold text-navy leading-tight text-4xl sm:text-5xl lg:text-6xl">
+              We design and build software that{' '}
+              <span className="text-primary">moves businesses</span>{' '}
               forward.
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-muted font-body leading-relaxed max-w-lg">
-              Rocket.io turns ambitious ideas into scalable, production-ready software products — from AI platforms and SaaS tools to mobile apps and complex web systems.
+            <p className="mt-6 text-lg text-slate2 font-body leading-relaxed max-w-lg">
+              Rocket.io partners with founders and teams to ship modern web applications,
+              AI-powered tools and digital platforms — built to last.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <Button href="/products" size="lg">
-                Explore Our Products <ArrowRight size={18} aria-hidden="true" />
-              </Button>
-              <Button href="/contact" variant="outline" size="lg">
-                Start a Project
-              </Button>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary-hover text-white font-semibold font-body px-7 py-3.5 rounded-lg transition-colors shadow-sm"
+              >
+                Discuss Your Project <ArrowRight size={18} aria-hidden="true" />
+              </Link>
+              <Link
+                href="/services"
+                className="inline-flex items-center gap-2 border-2 border-navy text-navy hover:bg-navy hover:text-white font-semibold font-body px-7 py-3.5 rounded-lg transition-colors"
+              >
+                Explore Services
+              </Link>
             </div>
           </div>
 
-          {/* Abstract product visual */}
+          {/* Abstract software visual */}
           <div aria-hidden="true" className="hidden lg:block">
             <div className="relative">
-              {/* Main dashboard card */}
+              {/* Main card */}
               <div className="bg-white rounded-2xl border border-border shadow-xl p-6">
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                  <div className="ml-4 h-5 bg-surface rounded w-40" />
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-3 h-3 rounded-full bg-red-300" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-300" />
+                  <div className="w-3 h-3 rounded-full bg-green-300" />
+                  <div className="ml-3 flex-1 h-5 bg-warm rounded-full" />
                 </div>
-                {/* Metric cards */}
-                <div className="grid grid-cols-3 gap-3 mb-4">
-                  {[
-                    { label: 'Users', value: '24.8k', color: 'text-primary' },
-                    { label: 'Revenue', value: '$142k', color: 'text-accent' },
-                    { label: 'Uptime', value: '99.9%', color: 'text-emerald-600' },
-                  ].map((m) => (
-                    <div key={m.label} className="bg-surface rounded-xl p-4">
-                      <p className="text-xs text-muted mb-1">{m.label}</p>
-                      <p className={`text-xl font-bold font-display ${m.color}`}>{m.value}</p>
+                {/* App layout mockup */}
+                <div className="flex gap-4">
+                  <div className="w-1/3 space-y-2">
+                    <div className="h-8 bg-primary/15 rounded-lg" />
+                    <div className="h-7 bg-warm rounded-lg" />
+                    <div className="h-7 bg-warm rounded-lg" />
+                    <div className="h-7 bg-warm rounded-lg" />
+                    <div className="h-7 bg-primary/10 rounded-lg" />
+                  </div>
+                  <div className="flex-1 space-y-3">
+                    <div className="h-20 bg-warm rounded-xl" />
+                    <div className="grid grid-cols-2 gap-2">
+                      <div className="h-14 bg-primary/10 rounded-xl" />
+                      <div className="h-14 bg-navy/5 rounded-xl" />
                     </div>
-                  ))}
-                </div>
-                {/* Chart placeholder */}
-                <div className="bg-surface rounded-xl p-4 mb-4">
-                  <div className="flex items-end gap-2 h-20">
-                    {[40, 60, 45, 80, 65, 90, 70, 95].map((h, i) => (
-                      <div
-                        key={i}
-                        className="flex-1 rounded-t-sm"
-                        style={{
-                          height: `${h}%`,
-                          background: i === 7 ? '#F04E23' : '#E5E7EB',
-                        }}
-                      />
-                    ))}
+                    <div className="h-8 bg-warm rounded-lg" />
                   </div>
                 </div>
-                {/* Pipeline */}
-                <div className="flex gap-2">
-                  {['Discovery', 'Design', 'Build', 'Launch'].map((step, i) => (
+                {/* Process steps */}
+                <div className="flex gap-2 mt-4">
+                  {['Discover', 'Design', 'Build', 'Launch'].map((step, i) => (
                     <div
                       key={step}
                       className="flex-1 text-center text-xs font-body font-semibold py-2 rounded-lg"
                       style={{
-                        background: i === 2 ? '#F04E23' : '#F4F6F9',
-                        color: i === 2 ? '#fff' : '#6B7280',
+                        background: i === 2 ? '#F97316' : '#FFF7ED',
+                        color: i === 2 ? '#fff' : '#475569',
                       }}
                     >
                       {step}
@@ -104,13 +93,13 @@ export default function Hero() {
               </div>
 
               {/* Floating accent cards */}
-              <div className="absolute -bottom-6 -left-10 bg-secondary text-white rounded-xl p-4 shadow-lg">
-                <p className="text-xs text-slate-400 mb-1 font-body">AI Automation</p>
-                <p className="font-bold font-display text-lg">Active ✓</p>
+              <div className="absolute -bottom-5 -left-8 bg-navy text-white rounded-xl p-4 shadow-lg">
+                <p className="text-xs text-slate-400 mb-1 font-body">Build status</p>
+                <p className="font-bold font-display text-sm text-green-400">All tests passing</p>
               </div>
-              <div className="absolute -top-6 -right-6 bg-white rounded-xl p-4 shadow-lg border border-border">
-                <p className="text-xs text-muted mb-1 font-body">Deploy status</p>
-                <p className="font-bold font-display text-emerald-600 text-sm">All systems live</p>
+              <div className="absolute -top-5 -right-5 bg-white rounded-xl p-4 shadow-lg border border-border">
+                <p className="text-xs text-slate2 mb-1 font-body">Current sprint</p>
+                <p className="font-bold font-display text-navy text-sm">On track ✓</p>
               </div>
             </div>
           </div>

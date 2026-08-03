@@ -82,7 +82,7 @@ export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
             onClick={onClose}
             className="block w-full text-center bg-primary hover:bg-primary-hover text-white font-semibold font-body py-3 px-6 rounded-lg transition-colors"
           >
-            Start a Project
+            Discuss Your Project
           </Link>
         </div>
       </nav>
