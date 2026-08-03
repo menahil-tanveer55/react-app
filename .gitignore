@@ -3,9 +3,6 @@
 out/
 next-env.d.ts
 
-# Dependencies
-node_modules/
-
 # Logs
 logs
 *.log
