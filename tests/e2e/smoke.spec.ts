@@ -75,11 +75,11 @@ test.describe('Hero section', () => {
     await expect(page.getByTestId('home-hero')).toBeVisible()
   })
 
-  test('primary CTA links to /contact', async ({ page }) => {
+  test('primary CTA links to /services', async ({ page }) => {
     const cta = page.getByTestId('hero-primary-cta')
     await expect(cta).toBeVisible()
-    await expect(cta).toHaveAttribute('href', '/contact')
-    await expect(cta).toContainText('Discuss Your Project')
+    await expect(cta).toHaveAttribute('href', '/services')
+    await expect(cta).toContainText('Explore Services')
   })
 
   test('products CTA links to /products', async ({ page }) => {
