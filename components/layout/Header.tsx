@@ -1,15 +1,52 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { Menu } from 'lucide-react'
-import { mainNav } from '@/config/site'
+import { Menu, X } from 'lucide-react'
 import MobileNav from './MobileNav'
 import { cn } from '@/lib/utils'
+
+const navLinks = [
+  { label: 'Home', href: '/', slug: 'home' },
+  { label: 'Services', href: '/services', slug: 'services' },
+  { label: 'Products', href: '/products', slug: 'products' },
+  { label: 'Team', href: '/team', slug: 'team' },
+  { label: 'About', href: '/about', slug: 'about' },
+  { label: 'Contact', href: '/contact', slug: 'contact' },
+]
+
+function LogoMark() {
+  return (
+    <svg
+      data-testid="site-logo-svg"
+      width="30"
+      height="30"
+      viewBox="0 0 30 30"
+      fill="none"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        data-testid="site-logo-arc"
+        d="M5 25 Q9 8 25 5"
+        stroke="#F97316"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        fill="none"
+      />
+      <circle data-testid="site-logo-lead-dot" cx="25" cy="5" r="3.5" fill="#F97316" />
+      <circle data-testid="site-logo-trail-dot-1" cx="10" cy="21" r="2" fill="#F97316" opacity="0.45" />
+      <circle data-testid="site-logo-trail-dot-2" cx="17" cy="12" r="1.5" fill="#F97316" opacity="0.7" />
+    </svg>
+  )
+}
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 8)
@@ -17,10 +54,31 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileOpen) {
+        setMobileOpen(false)
+        menuButtonRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [mobileOpen])
+
+  const closeMobile = () => {
+    setMobileOpen(false)
+    menuButtonRef.current?.focus()
+  }
+
   return (
     <>
       <a
         href="#main-content"
+        data-testid="skip-link"
         className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 bg-primary text-white px-4 py-2 rounded-lg font-semibold text-sm"
       >
         Skip to main content
@@ -29,67 +87,103 @@ export default function Header() {
       <header
         data-testid="site-header"
         className={cn(
-          'sticky top-0 z-30 w-full bg-navy transition-shadow duration-200',
-          scrolled && 'shadow-lg'
+          'sticky top-0 z-30 w-full bg-[#0F172A] transition-shadow duration-200',
+          scrolled && 'shadow-[0_2px_8px_rgba(0,0,0,0.4)]'
         )}
       >
-        {/* Orange accent strip */}
-        <div className="h-1 w-full bg-primary" aria-hidden="true" />
+        <div
+          data-testid="site-header-accent-strip"
+          className="h-[3px] w-full bg-[#F97316]"
+          aria-hidden="true"
+        />
 
-        <div className="container-max px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-[68px]">
-            {/* Logo */}
-            <Link
-              href="/"
-              className="font-display font-bold text-xl text-white hover:text-primary transition-colors shrink-0"
-              aria-label="Rocket.io home"
+        <div
+          data-testid="site-header-container"
+          className="max-w-[1280px] mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between h-[57px] md:h-[61px] lg:h-[65px]"
+        >
+          <Link
+            href="/"
+            data-testid="site-brand-link"
+            className="flex items-center gap-2.5 shrink-0 group"
+            aria-label="Rocket.io – go to homepage"
+          >
+            <span data-testid="site-logo-wrapper" className="flex items-center shrink-0">
+              <LogoMark />
+            </span>
+            <span
+              data-testid="site-wordmark"
+              className="font-display font-bold text-[22px] leading-none text-white group-hover:text-[#F97316] transition-colors duration-150"
             >
               Rocket.io
-            </Link>
+            </span>
+          </Link>
 
-            {/* Desktop nav */}
-            <nav
-              aria-label="Main navigation"
-              data-testid="desktop-navigation"
-              className="hidden lg:flex items-center gap-0.5"
+          <nav
+            data-testid="desktop-navigation"
+            aria-label="Main navigation"
+            className="hidden lg:flex items-center"
+          >
+            <ul
+              data-testid="desktop-navigation-list"
+              role="list"
+              className="flex items-center gap-1"
             >
-              {mainNav.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="px-3.5 py-2 rounded-lg text-sm font-semibold font-body text-white/80 hover:text-primary hover:bg-white/8 focus-visible:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+              {navLinks.map((item) => {
+                const isActive =
+                  item.href === '/'
+                    ? pathname === '/'
+                    : pathname === item.href || pathname.startsWith(`${item.href}/`)
+                return (
+                  <li key={item.slug} data-testid={`desktop-navigation-item-${item.slug}`}>
+                    <Link
+                      href={item.href}
+                      data-testid={`desktop-navigation-link-${item.slug}`}
+                      aria-current={isActive ? 'page' : undefined}
+                      className={cn(
+                        'relative px-3.5 py-2 rounded-md text-[15px] font-medium font-body transition-colors duration-150 outline-none',
+                        'focus-visible:ring-2 focus-visible:ring-[#FB923C] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A]',
+                        isActive ? 'text-white' : 'text-[#CBD5E1] hover:text-white'
+                      )}
+                    >
+                      {item.label}
+                      {isActive && (
+                        <span
+                          data-testid={`desktop-navigation-active-indicator-${item.slug}`}
+                          className="absolute bottom-0 left-3.5 right-3.5 h-[2px] bg-[#F97316] rounded-full"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </nav>
 
-            {/* CTA + hamburger */}
-            <div className="flex items-center gap-3">
-              <Link
-                href="/contact"
-                className="hidden lg:inline-flex items-center bg-primary hover:bg-primary-hover text-white font-semibold font-body text-sm px-5 py-2.5 rounded-lg transition-colors"
-                data-testid="header-cta"
-              >
-                Discuss Your Project
-              </Link>
-
-              <button
-                onClick={() => setMobileOpen(true)}
-                aria-label="Open navigation menu"
-                aria-expanded={mobileOpen}
-                aria-controls="mobile-nav"
-                data-testid="mobile-menu-trigger"
-                className="lg:hidden flex items-center justify-center w-11 h-11 rounded-lg text-white hover:bg-white/10 transition-colors"
-              >
-                <Menu size={22} aria-hidden="true" />
-              </button>
-            </div>
-          </div>
+          <button
+            ref={menuButtonRef}
+            data-testid="mobile-menu-button"
+            onClick={() => setMobileOpen((prev) => !prev)}
+            aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            className="lg:hidden flex items-center justify-center w-11 h-11 rounded-md border border-white/20 text-white hover:bg-white/10 hover:border-white/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FB923C]"
+          >
+            <span
+              data-testid="mobile-menu-icon-wrapper"
+              className="flex items-center justify-center w-5 h-5"
+            >
+              {mobileOpen ? (
+                <X size={20} aria-hidden="true" data-testid="mobile-menu-close-icon" />
+              ) : (
+                <Menu size={20} aria-hidden="true" data-testid="mobile-menu-open-icon" />
+              )}
+            </span>
+          </button>
         </div>
       </header>
 
-      <MobileNav isOpen={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <MobileNav isOpen={mobileOpen} onClose={closeMobile} />
     </>
   )
 }

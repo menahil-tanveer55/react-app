@@ -19,16 +19,12 @@ test.describe('Header navigation', () => {
   test('desktop nav contains expected links', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
     const nav = page.getByTestId('desktop-navigation')
+    await expect(nav.getByRole('link', { name: 'Home' })).toBeVisible()
     await expect(nav.getByRole('link', { name: 'Services' })).toBeVisible()
     await expect(nav.getByRole('link', { name: 'Products' })).toBeVisible()
-    await expect(nav.getByRole('link', { name: 'Internships' })).toBeVisible()
+    await expect(nav.getByRole('link', { name: 'Team' })).toBeVisible()
     await expect(nav.getByRole('link', { name: 'About' })).toBeVisible()
     await expect(nav.getByRole('link', { name: 'Contact' })).toBeVisible()
-  })
-
-  test('"Discuss Your Project" CTA is present in header', async ({ page }) => {
-    await page.setViewportSize({ width: 1280, height: 800 })
-    await expect(page.getByTestId('header-cta')).toHaveText('Discuss Your Project')
   })
 })
 
@@ -40,32 +36,32 @@ test.describe('Mobile menu', () => {
   })
 
   test('shows mobile menu trigger on small screens', async ({ page }) => {
-    await expect(page.getByTestId('mobile-menu-trigger')).toBeVisible()
+    await expect(page.getByTestId('mobile-menu-button')).toBeVisible()
   })
 
   test('opens mobile navigation when trigger is clicked', async ({ page }) => {
-    await page.getByTestId('mobile-menu-trigger').click()
+    await page.getByTestId('mobile-menu-button').click()
     await expect(page.getByTestId('mobile-navigation')).toBeVisible()
   })
 
   test('closes mobile navigation when Escape is pressed', async ({ page }) => {
-    await page.getByTestId('mobile-menu-trigger').click()
+    await page.getByTestId('mobile-menu-button').click()
     await expect(page.getByTestId('mobile-navigation')).toBeVisible()
     await page.keyboard.press('Escape')
     await expect(page.getByTestId('mobile-navigation')).not.toBeVisible()
   })
 
   test('mobile nav has correct aria attributes', async ({ page }) => {
-    const trigger = page.getByTestId('mobile-menu-trigger')
+    const trigger = page.getByTestId('mobile-menu-button')
     await expect(trigger).toHaveAttribute('aria-expanded', 'false')
     await trigger.click()
     await expect(trigger).toHaveAttribute('aria-expanded', 'true')
   })
 
-  test('mobile nav contains Discuss Your Project link', async ({ page }) => {
-    await page.getByTestId('mobile-menu-trigger').click()
+  test('mobile nav contains Contact link', async ({ page }) => {
+    await page.getByTestId('mobile-menu-button').click()
     const nav = page.getByTestId('mobile-navigation')
-    await expect(nav.getByRole('link', { name: 'Discuss Your Project' })).toBeVisible()
+    await expect(nav.getByRole('link', { name: 'Contact' })).toBeVisible()
   })
 })
 

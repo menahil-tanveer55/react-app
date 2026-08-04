@@ -1,9 +1,17 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import Link from 'next/link'
-import { X } from 'lucide-react'
-import { mainNav } from '@/config/site'
+import { cn } from '@/lib/utils'
+
+const navLinks = [
+  { label: 'Home', href: '/', slug: 'home' },
+  { label: 'Services', href: '/services', slug: 'services' },
+  { label: 'Products', href: '/products', slug: 'products' },
+  { label: 'Team', href: '/team', slug: 'team' },
+  { label: 'About', href: '/about', slug: 'about' },
+  { label: 'Contact', href: '/contact', slug: 'contact' },
+]
 
 interface MobileNavProps {
   isOpen: boolean
@@ -11,89 +19,47 @@ interface MobileNavProps {
 }
 
 export default function MobileNav({ isOpen, onClose }: MobileNavProps) {
-  const closeButtonRef = useRef<HTMLButtonElement>(null)
-  const triggerRef = useRef<HTMLElement | null>(null)
-
-  useEffect(() => {
-    if (isOpen) {
-      triggerRef.current = document.activeElement as HTMLElement
-      closeButtonRef.current?.focus()
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-      triggerRef.current?.focus()
-    }
-    return () => { document.body.style.overflow = '' }
-  }, [isOpen])
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-    }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [onClose])
+  const pathname = usePathname()
 
   if (!isOpen) return null
 
   return (
-    <>
-      <div
-        className="fixed inset-0 bg-black/60 z-40 lg:hidden"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-      <nav
-        id="mobile-nav"
-        role="dialog"
-        aria-label="Mobile navigation"
-        aria-modal="true"
-        data-testid="mobile-navigation"
-        className="fixed top-0 right-0 h-full w-80 max-w-full bg-navy z-50 shadow-2xl flex flex-col lg:hidden"
+    <nav
+      id="mobile-nav"
+      data-testid="mobile-navigation"
+      aria-label="Mobile navigation"
+      className="fixed top-[60px] md:top-[64px] left-0 right-0 z-40 lg:hidden bg-[#0F172A] border-t border-white/10 shadow-lg"
+    >
+      <ul
+        data-testid="mobile-navigation-list"
+        role="list"
+        className="py-2 px-4 max-h-[calc(100vh-63px)] overflow-y-auto"
       >
-        <div className="h-1 w-full bg-primary shrink-0" aria-hidden="true" />
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10">
-          <Link
-            href="/"
-            onClick={onClose}
-            className="font-display font-bold text-xl text-white hover:text-primary transition-colors"
-          >
-            Rocket.io
-          </Link>
-          <button
-            ref={closeButtonRef}
-            onClick={onClose}
-            aria-label="Close navigation menu"
-            className="flex items-center justify-center w-11 h-11 rounded-lg text-white hover:bg-white/10 transition-colors"
-          >
-            <X size={22} aria-hidden="true" />
-          </button>
-        </div>
-
-        <ul className="flex flex-col p-4 gap-1 flex-1 overflow-y-auto" role="list">
-          {mainNav.map((item) => (
-            <li key={item.href}>
+        {navLinks.map((item) => {
+          const isActive =
+            item.href === '/'
+              ? pathname === '/'
+              : pathname === item.href || pathname.startsWith(`${item.href}/`)
+          return (
+            <li key={item.slug} data-testid={`mobile-navigation-item-${item.slug}`}>
               <Link
                 href={item.href}
+                data-testid={`mobile-navigation-link-${item.slug}`}
+                aria-current={isActive ? 'page' : undefined}
                 onClick={onClose}
-                className="flex items-center px-4 py-3 min-h-[44px] rounded-lg font-semibold font-body text-white/80 hover:text-primary hover:bg-white/10 transition-colors"
+                className={cn(
+                  'flex items-center px-4 py-3.5 rounded-md text-[15px] font-medium font-body min-h-[48px] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FB923C]',
+                  isActive
+                    ? 'text-white border-l-2 border-[#F97316] pl-[14px]'
+                    : 'text-[#CBD5E1] hover:text-white hover:bg-white/5'
+                )}
               >
                 {item.label}
               </Link>
             </li>
-          ))}
-        </ul>
-
-        <div className="p-6 border-t border-white/10 shrink-0">
-          <Link
-            href="/contact"
-            onClick={onClose}
-            className="block w-full text-center bg-primary hover:bg-primary-hover text-white font-semibold font-body py-3.5 px-6 rounded-lg transition-colors min-h-[44px]"
-          >
-            Discuss Your Project
-          </Link>
-        </div>
-      </nav>
-    </>
+          )
+        })}
+      </ul>
+    </nav>
   )
 }

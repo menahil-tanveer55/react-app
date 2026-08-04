@@ -16,12 +16,12 @@ export const siteConfig = {
 }
 
 export const mainNav: NavItem[] = [
-  { label: 'Services', href: '/services' },
-  { label: 'Products', href: '/products' },
-  { label: 'Team', href: '/about#team' },
-  { label: 'Internships', href: '/internships' },
-  { label: 'About', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Home', href: '/', slug: 'home' },
+  { label: 'Services', href: '/services', slug: 'services' },
+  { label: 'Products', href: '/products', slug: 'products' },
+  { label: 'Team', href: '/team', slug: 'team' },
+  { label: 'About', href: '/about', slug: 'about' },
+  { label: 'Contact', href: '/contact', slug: 'contact' },
 ]
 
 export const footerNav = {
