@@ -27,17 +27,33 @@ function LogoMark() {
       aria-hidden="true"
       focusable="false"
     >
+      {/* Rocket body: curved nose cone + straight body */}
       <path
-        data-testid="site-logo-arc"
-        d="M5 25 Q9 8 25 5"
-        stroke="#F97316"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        fill="none"
+        data-testid="site-logo-body"
+        d="M15 2C20 3 21 8 21 13V22H9V13C9 8 10 3 15 2Z"
+        fill="#F97316"
       />
-      <circle data-testid="site-logo-lead-dot" cx="25" cy="5" r="3.5" fill="#F97316" />
-      <circle data-testid="site-logo-trail-dot-1" cx="10" cy="21" r="2" fill="#F97316" opacity="0.45" />
-      <circle data-testid="site-logo-trail-dot-2" cx="17" cy="12" r="1.5" fill="#F97316" opacity="0.7" />
+      {/* Swept left fin */}
+      <path
+        data-testid="site-logo-fin-left"
+        d="M9 20L4 27L9 24Z"
+        fill="#EA580C"
+      />
+      {/* Swept right fin */}
+      <path
+        data-testid="site-logo-fin-right"
+        d="M21 20L26 27L21 24Z"
+        fill="#EA580C"
+      />
+      {/* Porthole window */}
+      <circle
+        data-testid="site-logo-window"
+        cx="15"
+        cy="15"
+        r="2.5"
+        fill="white"
+        opacity="0.85"
+      />
     </svg>
   )
 }
