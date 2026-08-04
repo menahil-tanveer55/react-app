@@ -1,64 +1,85 @@
 import Link from 'next/link'
-import { Code2, Brain, Palette } from 'lucide-react'
+import { Code2, Brain, Palette, ShieldCheck } from 'lucide-react'
 
-const services = [
+const featuredServices = [
   {
+    slug: 'custom-software',
     Icon: Code2,
     title: 'Custom Software Development',
     description:
-      'Web applications, internal tools and platforms built for how your business actually works — not off-the-shelf compromises.',
+      'Scalable web applications, internal tools and platforms built around how your business actually works.',
   },
   {
+    slug: 'ai-automation',
     Icon: Brain,
-    title: 'AI & Automation',
+    title: 'AI and Automation',
     description:
-      'Practical AI integration: smart workflows, content pipelines and data-driven features your team will use every day.',
+      'Intelligent workflows, smart features and data-driven automation that your team will use every day.',
   },
   {
+    slug: 'product-design',
     Icon: Palette,
-    title: 'Product Design & Engineering',
+    title: 'Product Design and Engineering',
     description:
-      'From idea to launched product — strategy, UX design and engineering working together from day one.',
+      'Strategy, UX design and engineering working together from first idea to launched product.',
+  },
+  {
+    slug: 'quality-engineering',
+    Icon: ShieldCheck,
+    title: 'Quality Engineering',
+    description:
+      'Comprehensive testing strategies — automated, accessible and built into your development process.',
   },
 ]
 
 export default function HomeServices() {
   return (
-    <section aria-labelledby="services-heading" className="section-padding bg-warm">
+    <section
+      aria-labelledby="services-heading"
+      data-testid="services-section"
+      className="section-padding bg-warm"
+    >
       <div className="container-max">
-        <div className="text-center mb-14">
+        <div className="mb-12">
           <p className="text-sm font-semibold uppercase tracking-widest text-primary font-body mb-3">
-            Services
+            What we do
           </p>
           <h2
             id="services-heading"
-            className="font-display font-bold text-navy text-3xl sm:text-4xl lg:text-5xl leading-tight"
+            className="font-display font-bold text-navy text-3xl sm:text-4xl lg:text-5xl leading-tight mb-4"
           >
-            What we do
+            Our services
           </h2>
+          <p className="font-body text-slate2 text-lg leading-relaxed max-w-2xl">
+            From early product decisions to development, testing and launch, Rocket.io helps
+            organisations turn ideas and operational challenges into reliable software.
+          </p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-8">
-          {services.map(({ Icon, title, description }) => (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {featuredServices.map(({ slug, Icon, title, description }) => (
             <div
-              key={title}
-              className="bg-white rounded-2xl border border-border p-8 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+              key={slug}
+              data-testid={`service-card-${slug}`}
+              className="bg-white rounded-2xl border border-border p-7 hover:shadow-md hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                <Icon size={24} className="text-primary" aria-hidden="true" />
+              <div className="w-11 h-11 bg-primary/10 rounded-xl flex items-center justify-center mb-5">
+                <Icon size={22} className="text-primary" aria-hidden="true" />
               </div>
-              <h3 className="font-display font-bold text-navy text-xl mb-3">{title}</h3>
-              <p className="font-body text-slate2 leading-relaxed text-sm">{description}</p>
+              <h3 className="font-display font-bold text-navy text-lg mb-3 leading-snug">
+                {title}
+              </h3>
+              <p className="font-body text-slate2 text-sm leading-relaxed">{description}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-10">
           <Link
             href="/services"
             className="inline-flex items-center gap-2 text-primary font-semibold font-body hover:underline"
           >
-            See all services
+            Explore All Services →
           </Link>
         </div>
       </div>

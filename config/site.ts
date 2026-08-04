@@ -2,39 +2,43 @@ import type { NavItem } from '@/types/common'
 
 export const siteConfig = {
   name: 'Rocket.io',
-  tagline: 'We design and build software that helps businesses move faster.',
+  tagline: 'Software development, product innovation and emerging talent.',
   description:
-    'Rocket.io is a software company that designs and builds modern web applications, AI-powered tools and digital platforms for businesses.',
+    'Rocket.io builds modern web, mobile and AI solutions for businesses, develops its own products, and provides practical opportunities for emerging technology talent.',
   url: 'https://rocket-io.vercel.app',
   ogImage: '/og-default.png',
-  // Email — add a real, monitored address before publishing
   email: '',
   social: {
-    // Add real URLs before showing these links
     linkedin: '',
     github: '',
     twitter: '',
   },
 }
 
-// Main navigation — Products, Work, Blog hidden until real content exists
 export const mainNav: NavItem[] = [
   { label: 'Services', href: '/services' },
+  { label: 'Products', href: '/products' },
+  { label: 'Team', href: '/about#team' },
+  { label: 'Internships', href: '/internships' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ]
 
 export const footerNav = {
   services: [
-    { label: 'Custom Software', href: '/services' },
-    { label: 'AI & Automation', href: '/services' },
+    { label: 'Software Development', href: '/services' },
+    { label: 'AI and Automation', href: '/services' },
     { label: 'Product Design', href: '/services' },
+    { label: 'Quality Engineering', href: '/services' },
   ],
   company: [
     { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Team', href: '/about#team' },
+    { label: 'Internships', href: '/internships' },
+    { label: 'Updates', href: '/updates' },
   ],
   legal: [
+    { label: 'Contact', href: '/contact' },
     { label: 'Privacy Policy', href: '/privacy' },
     { label: 'Terms of Service', href: '/terms' },
   ],

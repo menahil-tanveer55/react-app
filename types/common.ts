@@ -16,16 +16,16 @@ export interface Feature {
   icon?: string
 }
 
-export interface Stat {
-  value: string
-  label: string
-}
-
 export interface Testimonial {
   id: string
   quote: string
   author: string
   role: string
   company: string
-  isPlaceholder: true
+  country?: string
+  photoUrl?: string
+  publicSourceUrl?: string
+  verified: boolean
+  permissionConfirmed: boolean
+  displayOrder?: number
 }

@@ -1,46 +1,41 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 
 export default function AboutSection() {
   return (
-    <section aria-labelledby="about-section-heading" className="section-padding bg-white">
-      <div className="container-max">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Copy */}
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary font-body mb-4">
-              About
-            </p>
-            <h2
-              id="about-section-heading"
-              className="font-display font-bold text-navy text-3xl sm:text-4xl leading-tight mb-6"
-            >
-              A software studio that takes your product seriously
-            </h2>
-            <p className="font-body text-slate2 leading-relaxed mb-4">
-              Rocket.io is a small software studio that designs and builds modern digital products.
-              We work with founders, product teams and businesses who need a reliable engineering
-              partner — not a large agency overhead.
-            </p>
-            <p className="font-body text-slate2 leading-relaxed mb-8">
-              We care about craft: writing clean code, designing thoughtful experiences and
-              shipping software that actually works.
-            </p>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 text-primary font-semibold font-body hover:underline"
-            >
-              Learn more about us <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
-
-          {/* Visual placeholder */}
-          <div
-            aria-hidden="true"
-            className="hidden lg:flex items-center justify-center bg-warm rounded-2xl border border-border h-72"
+    <section
+      aria-labelledby="about-section-heading"
+      data-testid="about-section"
+      className="section-padding bg-white"
+    >
+      <div className="container-max max-w-3xl text-center">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary font-body mb-4">
+          About
+        </p>
+        <h2
+          id="about-section-heading"
+          className="font-display font-bold text-navy text-3xl sm:text-4xl lg:text-5xl leading-tight mb-6"
+        >
+          Building more than software
+        </h2>
+        <p className="font-body text-lg text-slate2 leading-relaxed mb-8">
+          Rocket.io is a software company focused on practical digital products, responsible
+          engineering and meaningful opportunities for emerging technology talent. We work with
+          organisations, build products of our own and help new developers gain experience
+          through supervised real-world work.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link
+            href="/about"
+            className="inline-flex items-center gap-2 bg-navy hover:bg-navy/90 text-white font-semibold font-body px-6 py-3 rounded-lg transition-colors"
           >
-            <p className="font-body text-slate2 text-sm">Team photo coming soon</p>
-          </div>
+            About Rocket.io
+          </Link>
+          <Link
+            href="/about#team"
+            className="inline-flex items-center gap-2 border-2 border-navy text-navy hover:bg-navy hover:text-white font-semibold font-body px-6 py-3 rounded-lg transition-colors"
+          >
+            Meet the Team
+          </Link>
         </div>
       </div>
     </section>

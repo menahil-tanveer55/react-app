@@ -1,10 +1,10 @@
 import SectionHeading from '@/components/ui/SectionHeading'
 import ProductCard from '@/components/ui/ProductCard'
 import Button from '@/components/ui/Button'
-import { products } from '@/data/products'
+import { publishedProducts } from '@/data/products'
 
 export default function FeaturedProducts() {
-  const featured = products.filter((p) => p.featured)
+  const featured = publishedProducts.slice(0, 3)
 
   return (
     <section aria-labelledby="products-heading" className="section-padding bg-white">
