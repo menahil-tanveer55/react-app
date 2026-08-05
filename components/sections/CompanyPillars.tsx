@@ -84,7 +84,7 @@ export default function CompanyPillars() {
               href={href}
               aria-label={ariaLabel}
               data-testid={`focus-card-${testId}`}
-              className="group flex flex-col bg-white border border-border rounded-2xl p-8 shadow-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-lg hover:border-primary/40 hover:bg-primary/[0.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:-translate-y-1 focus-visible:shadow-lg focus-visible:border-primary/40 active:translate-y-0 active:shadow-sm"
+              className="group flex flex-col bg-white border border-border rounded-2xl p-8 shadow-sm cursor-pointer transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:border-primary/50 hover:bg-orange-50/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:-translate-y-1 focus-visible:shadow-xl focus-visible:border-primary/50 active:translate-y-0 active:shadow-sm"
             >
               {/* Icon */}
               <div
@@ -118,16 +118,16 @@ export default function CompanyPillars() {
                 {description}
               </p>
 
-              {/* CTA — non-interactive; aria-hidden because the wrapping Link already describes the destination */}
+              {/* CTA pill — decorative indicator; aria-hidden because the wrapping Link already describes the destination */}
               <span
                 data-testid={`focus-card-${testId}-action`}
-                className="inline-flex items-center gap-1.5 font-body text-sm font-semibold text-primary"
+                className="inline-flex items-center gap-2 font-body text-sm font-semibold text-primary bg-primary/10 group-hover:bg-primary/20 px-4 py-2 rounded-full transition-colors duration-200 self-start"
                 aria-hidden="true"
               >
                 <span data-testid={`focus-card-${testId}-cta-text`}>{cta}</span>
                 <span
                   data-testid={`focus-card-${testId}-arrow`}
-                  className="transition-transform duration-200 group-hover:translate-x-1 group-focus-visible:translate-x-1"
+                  className="transition-transform duration-200 group-hover:translate-x-0.5 group-focus-visible:translate-x-0.5"
                 >
                   →
                 </span>

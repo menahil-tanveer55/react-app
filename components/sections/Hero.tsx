@@ -31,7 +31,7 @@ export default function Hero() {
       {/* Main container — compact responsive padding replaces the previous py-10/py-20 scale */}
       <div
         data-testid="home-hero-container"
-        className="container-max relative z-10 px-4 sm:px-6 lg:px-8 pt-7 pb-9 sm:py-10 lg:py-12 xl:py-14"
+        className="container-max relative z-10 px-4 sm:px-6 lg:px-8 pt-3 pb-6 sm:pt-5 sm:pb-8 lg:pt-6 lg:pb-10 xl:pt-7 xl:pb-12"
       >
         <div data-testid="home-hero-content" className="grid lg:grid-cols-2 gap-10 xl:gap-16 items-center">
 
@@ -39,7 +39,7 @@ export default function Hero() {
           <div data-testid="home-hero-left" className="max-w-lg">
             <p
               data-testid="home-hero-eyebrow"
-              className="inline-flex items-center gap-2.5 font-body text-xs font-semibold uppercase tracking-[0.12em] text-primary mb-5"
+              className="inline-flex items-center gap-2.5 font-body text-xs font-semibold uppercase tracking-[0.12em] text-primary mb-3"
             >
               <span data-testid="home-hero-eyebrow-dash" className="w-5 h-[2px] bg-primary rounded-full" aria-hidden="true" />
               Software · Products · Talent
@@ -54,13 +54,13 @@ export default function Hero() {
 
             <p
               data-testid="home-hero-description"
-              className="mt-5 text-base sm:text-[1.0625rem] text-slate2 font-body leading-relaxed"
+              className="mt-3 text-base sm:text-[1.0625rem] text-slate2 font-body leading-relaxed"
             >
               Rocket.io creates modern web, mobile and AI solutions for businesses, while building
               internal products and supporting emerging technology talent through real project work.
             </p>
 
-            <div data-testid="home-hero-actions" className="mt-8 flex flex-wrap gap-3">
+            <div data-testid="home-hero-actions" className="mt-5 flex flex-wrap gap-3">
               <Link
                 href="/services"
                 data-testid="hero-primary-cta"
@@ -79,7 +79,7 @@ export default function Hero() {
 
             <div
               data-testid="home-hero-social-proof"
-              className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate2 font-body"
+              className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate2 font-body"
             >
               <span data-testid="home-hero-proof-active" className="flex items-center gap-1.5">
                 <span
@@ -99,7 +99,7 @@ export default function Hero() {
           {/* ── Right: Dashboard visual ── */}
           <div data-testid="home-hero-visual" aria-hidden="true" className="hidden lg:block">
             {/* Reduced outer padding (py-7 px-7 = 28px) so floats fit without inflating column height */}
-            <div data-testid="home-hero-dashboard-wrapper" className="relative mx-auto max-w-[400px] py-7 px-7">
+            <div data-testid="home-hero-dashboard-wrapper" className="relative mx-auto max-w-[400px] py-4 px-6">
 
               {/* Main card */}
               <div
