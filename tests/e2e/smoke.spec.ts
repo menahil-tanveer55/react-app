@@ -155,12 +155,19 @@ test.describe('Team and interns', () => {
   })
 })
 
-// ─── Testimonials: verified-only filtering ────────────────────────────────────
+// ─── Testimonials ─────────────────────────────────────────────────────────────
 test.describe('Testimonials', () => {
-  test('testimonials section is absent when no verified reviews exist', async ({ page }) => {
+  test('testimonials section is visible on homepage', async ({ page }) => {
     await page.goto('/')
-    // Component renders null when no verified testimonials — section should not be in DOM
-    await expect(page.getByTestId('testimonials-section')).not.toBeVisible()
+    await expect(page.getByTestId('testimonials-section')).toBeVisible()
+  })
+
+  test('all four sample testimonial cards are present', async ({ page }) => {
+    await page.goto('/')
+    await expect(page.getByTestId('testimonial-card-sarah-mitchell')).toBeVisible()
+    await expect(page.getByTestId('testimonial-card-daniel-brooks')).toBeVisible()
+    await expect(page.getByTestId('testimonial-card-emily-carter')).toBeVisible()
+    await expect(page.getByTestId('testimonial-card-michael-reed')).toBeVisible()
   })
 })
 

@@ -5,9 +5,10 @@ import CompanyPillars from '@/components/sections/CompanyPillars'
 import HomeServices from '@/components/sections/HomeServices'
 import FeaturedWorkProducts from '@/components/sections/FeaturedWorkProducts'
 import WhatWeBuilding from '@/components/sections/WhatWeBuilding'
+import HomeClientProjects from '@/components/sections/HomeClientProjects'
 import LatestUpdates from '@/components/sections/LatestUpdates'
 import PeopleSection from '@/components/sections/PeopleSection'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
+import HomeSampleTestimonials from '@/components/sections/HomeSampleTestimonials'
 import AboutSection from '@/components/sections/AboutSection'
 import CallToAction from '@/components/sections/CallToAction'
 
@@ -24,9 +25,10 @@ export default function HomePage() {
       <HomeServices />
       <FeaturedWorkProducts />
       <WhatWeBuilding />
+      <HomeClientProjects />
       <LatestUpdates />
       <PeopleSection />
-      <TestimonialsSection />
+      <HomeSampleTestimonials />
       <AboutSection />
       <CallToAction />
     </>
