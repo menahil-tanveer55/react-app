@@ -3,6 +3,9 @@
 out/
 next-env.d.ts
 
+# TypeScript build cache
+tsconfig.tsbuildinfo
+
 # Logs
 logs
 *.log
